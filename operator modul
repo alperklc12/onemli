@@ -1,0 +1,4 @@
+import operator as op
+
+a, b = 5, 10
+op.mul(a, b)
