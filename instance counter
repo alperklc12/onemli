@@ -1,0 +1,4 @@
+class MyClass:
+    count = 0
+    def __init__():
+        MyClass.count += 1
