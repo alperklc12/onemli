@@ -1,0 +1,17 @@
+class Calisan:
+    def __init__(self, maas):
+        self.maas = maas
+
+        
+class Yonetici(Calisan):
+    def __init__(self, maas):
+        super().__init__(maas)
+
+    def zam_yap(self, zam_miktar):
+        self.maas += zam_miktar
+
+
+
+yonetici = Yonetici(1000)
+
+yonetici.zam_yap(500)
