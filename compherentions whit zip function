@@ -1,0 +1,3 @@
+renk = ['kırmızı', 'turuncu', 'sarı', 'mor']
+meyve = ['elma', 'portakal', 'muz', 'patlıcan']
+renkli = [(x, y) for x, y in zip(renk, meyve)]
