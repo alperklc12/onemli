@@ -1,0 +1,3 @@
+import shutil
+shutil.copy("C:/dosya.png", "D:/") # Kopyalar
+shutil.move("C:/dosya.png", "D:/") # Tasir
