@@ -1,0 +1,19 @@
+def outer(fn):
+    def inner(x, y):
+        result = fn(x, y)
+        return result * 2
+    return inner
+
+
+@outer
+def toplam(x, y):
+    return x + y
+
+
+@outer
+def carp(x, y):
+    return x * y
+
+
+print(carp(21, 5))
+print(toplam(6, 5))
