@@ -1,0 +1,4 @@
+lookup = {}
+lookup = dict()
+lookup = {'isim': 'alper', 'yas': 42}
+lookup = dict(isim='alper', yas=42)
