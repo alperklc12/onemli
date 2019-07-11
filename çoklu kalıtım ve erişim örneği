@@ -1,0 +1,27 @@
+class MainClassA:
+    def __init__(self, itema):
+        self.itema = itema
+
+    def classA_method(self):
+        print('Main class A', self.itema)
+
+
+class MainClassB:
+    def __init__(self, itemb):
+        self.itemb = itemb
+
+    def classB_method(self):
+        print('Main class B', self.itemb)
+
+
+class MyClass(MainClassA, MainClassB):
+    def __init__(self, itema, itemb):
+        MainClassA.__init__(self, itema)
+        MainClassB.__init__(self, itemb)
+
+
+my_obj = MyClass('itema', 'itemb')
+print(my_obj.itema)
+print(my_obj.itemb)
+my_obj.classA_method()
+my_obj.classB_method()
