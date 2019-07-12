@@ -1,0 +1,16 @@
+import time
+
+
+def power(limit):
+    return [x**x for x in range(limit)]
+
+
+def time_count(fn):
+    start = time.time()
+    fn()
+    end = time.time()
+    return end - start
+
+
+result = time_count(lambda: power(1000))
+print(result)
