@@ -1,0 +1,6 @@
+with open('data.txt', 'r+', encoding='utf-8') as file:
+    content = file.readlines()
+    content.insert(3, 'jackson\n')
+    file.seek(0)
+    for i in content:
+        file.write(i)
