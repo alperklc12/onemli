@@ -1,0 +1,37 @@
+kanallar = ['Atv', 'Blunberg', 'Cnn', 'Kanal a', 'Kanal d', 'ntv']
+current = 0
+
+
+def ileri_git():
+    global current
+    if current >= len(kanallar) - 1:
+        print('Dur')
+
+    else:
+        current += 1
+        print(kanallar[current])
+
+
+def geri_git():
+    global current
+    if current <= 0:
+        print('Dur')
+    else:
+        current -= 1
+        print(kanallar[current])
+
+
+print(kanallar[current])
+
+cmd = input('ileri [>] geri [<]')
+
+while True:
+    if cmd == '>':
+        ileri_git()
+    elif cmd == '<':
+        geri_git()
+    else:
+        print('Tercih yapmadın')
+        break
+
+    cmd = input('ileri [>] geri [<]')
