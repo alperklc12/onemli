@@ -1,0 +1,19 @@
+print('modülün başındayım')
+
+try:
+    print('try bloğunun başı burası')
+    a = int('234')
+    print(2/1)
+    print('try bloğunun sonunu gördün mü')
+
+except ValueError:
+    print('value except bloğu')
+except ZeroDivisionError:
+    print('zero division except bloğu')
+else:
+    print('bizde hata olmaz ki')
+finally:
+    print('dosyayı kapatım bak')
+
+
+print('modülün sonundayım')
