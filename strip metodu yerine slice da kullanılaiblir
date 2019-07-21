@@ -1,0 +1,4 @@
+s = 'alper\n'
+s.strip()
+s = s[:-1]
+#  sonuc 'alper' ikiside aynı
