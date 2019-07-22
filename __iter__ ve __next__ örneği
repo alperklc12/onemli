@@ -1,0 +1,21 @@
+class Kuvvet:
+    def __init__(self, max_):
+        self.max_ = max_
+        self.kuvvet_ = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+
+        if self.kuvvet_ < self.max_:
+            self.kuvvet_ += 1
+            return self.kuvvet_ ** 2
+        else:
+            raise StopIteration
+
+
+kuvvet = Kuvvet(10)
+
+for i in kuvvet:
+    print(i)
