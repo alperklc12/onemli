@@ -1,0 +1,22 @@
+def outer(cmd):
+    tpl = 0
+    crp = 1
+    
+    def topla(*args):
+        nonlocal tpl
+        tpl = sum(args)
+        return tpl
+    
+    def carp(*args):
+        nonlocal crp
+        for i in args:
+            crp *= i
+        return crp
+    
+    if cmd == 'tpl':
+        return topla
+    elif cmd == 'crp':
+        return carp
+
+fn_t = outer('tpl')
+fn_c = outer('crp')
