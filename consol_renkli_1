@@ -1,0 +1,5 @@
+import termcolor
+
+help(termcolor)
+termcolor.cprint('Hello, World!', color='red', attrs=['bold'])
+print(termcolor.colored('Hello, World!', 'green'))
