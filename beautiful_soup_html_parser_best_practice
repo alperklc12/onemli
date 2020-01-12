@@ -1,0 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+
+# search = input('Enter your query word')
+# params = {'q': search}
+# requests.get(url, params=params)
+
+params = input('Enter your querry: ')
+url = 'https://www.bing.com/search?q=' + params
+
+request = requests.get(url).text
+
+soup = BeautifulSoup(request, 'html.parser')
+result = soup.find('ol', {'id': 'b_results'})
+links = result.findAllNext('li', {'class': 'b_algo'})
+
+for item in links:
+    item_text = item.find('a').text
+    item_href = item.find('a').attrs['href']
+
+    if item_text and item_href:
+        print(item_text)
+        print(item_href)
