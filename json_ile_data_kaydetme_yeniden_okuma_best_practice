@@ -1,0 +1,16 @@
+import json
+import os
+
+if os.path.isfile('./data.json') and os.stat('./data.json').st_size != 0:
+    with open('./data.json', 'r+') as old_fl:
+        data = json.loads(old_fl.read())
+        print('Current age is', data['age'], 'adding a year')
+        data['age'] += 1
+        print('New age is', data['age'])
+        old_fl.seek(0)
+        old_fl.write(json.dumps(data))
+else:
+    with open('./data.json', 'w') as new_fl:
+        data = {'name': 'alper', 'age': 42}
+        print('No file found!!!')
+        new_fl.write(json.dumps(data))
