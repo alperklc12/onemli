@@ -1,0 +1,35 @@
+def reverse_loop(word):
+    stack = []
+    result_ = ''
+    for i in word:
+        stack.append(i)
+
+    for i in range(len(stack)):
+        result_ += stack.pop()
+
+    return result_
+
+
+result = ''
+stuck = []
+
+
+def _reverse_recursive(word):
+    # base case
+    if len(word) <= 0:
+        return word
+    # recursive case
+    else:
+        global result
+        temp = word[-1]  # word[0] start to end!
+        result += temp
+        stuck.append(temp)
+        _reverse_recursive(word[:-1])  # word[1:] start to end!
+
+
+_reverse_recursive('python')
+
+print(result)
+print(''.join(stuck))
+
+print(reverse_loop('python'))
