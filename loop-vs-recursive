@@ -1,0 +1,15 @@
+def iter_test(low, high):
+    while low <= high:
+        print(low)
+        low += 1
+
+
+def recur_test(low, high):
+    if low <= high:
+        print(low)
+        recur_test(low + 1, high)
+
+
+iter_test(1, 5)
+print('***')
+recur_test(1, 5)
