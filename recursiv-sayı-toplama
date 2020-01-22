@@ -1,0 +1,15 @@
+def recursive_wrap(args):
+    sum_ = 0
+    def _inner_recursive(w):
+        nonlocal sum_
+        if len(w) <= 0:
+            return w
+        else:
+
+            sum_ += int(w[0])
+            return _inner_recursive(w[1:])
+    _inner_recursive(args)
+    return sum_
+
+
+print(recursive_wrap('4321'))
