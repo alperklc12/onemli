@@ -1,0 +1,8 @@
+def func(x):
+    return f'{x}'
+
+
+a = {'a': lambda x: x, 'b': func}
+
+print(a['a']('hello python'))
+print(a['b']('hello alper'))
