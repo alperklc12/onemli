@@ -1,0 +1,3 @@
+lst_b = []
+lst_b += [None]*10
+print(lst_b)
