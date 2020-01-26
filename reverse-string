@@ -1,0 +1,19 @@
+s_ = 'Hi my name is Andrei'
+
+
+def revers_str(str_p: str):
+    
+    # str_p = str_p[::-1]  # Built in version
+    
+    if isinstance(str_p, str) and len(str_p) > 2:
+        temp = ''
+        for i in range(len(str_p) - 1, -1, -1):
+            temp += str_p[i]
+
+        return temp
+
+    else:
+        return 'Text is not available!'
+
+
+revers_str(s_)
