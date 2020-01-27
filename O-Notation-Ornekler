@@ -1,0 +1,37 @@
+lst = ['nemo', 'dory', 'gill']
+
+
+def func_n(arr):
+    for i in range(len(arr)):
+        if arr[i] == 'nemo':
+            print('Find NEMO!')
+
+
+def func_const(arr):
+    return arr[0]  # O(1)
+
+
+def func_many_const(arr):
+    print(arr[0])  # O(1)
+    print((arr[1]))  # O(1)
+
+
+def another_func():
+    pass
+
+
+def func_exam(arr):  # O(3 + 4n)
+    a = 10  # O(1)
+    a = 50 + 3  # O(1)
+
+    for i in range(len(arr)):  # O(n)
+        another_func()  # O(n)
+        stranger = True # O(n)
+        a += 1  # O(n)
+    return a  # O(1)
+
+
+func_n(lst)  # O(n) --> Linear Time
+func_const(lst)  # O(1) --> Constant Time
+func_many_const(lst)  # O(1) --> Constant Time: It dose not matter how many constant
+func_exam(lst)  # O(3 + 4n) --> O(n)
