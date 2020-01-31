@@ -26,7 +26,7 @@ root_.right.right.right = Node('j')
 def travers(root):
     stack = [root]
     visited = []
-    while stack:
+    while stack:  # BFS if you use the stack, DFS if you use the queue.
         current = stack.pop(0)
         if current.left is not None:
             stack.append(current.left)
