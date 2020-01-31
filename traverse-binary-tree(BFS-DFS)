@@ -1,3 +1,6 @@
+#BFS if you use the stack, DFS if you use the queue.
+
+
 class Node:
     def __init__(self, value):
         self.value = value
