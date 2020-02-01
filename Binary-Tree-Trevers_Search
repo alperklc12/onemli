@@ -10,6 +10,19 @@ class Node:
     def insert(self, value):
         return self._insert_helper(self, value)
 
+    def look_up(self, value):
+        current = self
+        while current:
+            if value == current.value:
+                return current
+            if value < current.value:
+                current = current.left
+            else:
+                current = current.right
+        else:
+            return f'{value} is not in tree'
+
+
     def _insert_helper(self, current, value):
         if value < current.value:
             if current.left is None:
@@ -63,3 +76,4 @@ root.insert(170)
 
 print(root.traverse())
 print(root.traverse_iterr())
+print(root.look_up(11))
