@@ -1,0 +1,82 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        return f'<{self.value}>'
+
+
+class BinaryTree:
+    def __init__(self, value):
+        self.root = Node(value)
+
+    def insert_itter(self, value):
+        current = self.root
+        while current:
+            if value < current.value:
+                if current.left is None:
+                    current.left = Node(value)
+                    break
+                else:
+                    current = current.left
+            else:
+                if current.right is None:
+                    current.right = Node(value)
+                    break
+                else:
+                    current = current.right
+
+    def insert_recursiv(self, value):
+        return self._insert_recursive_helper(self.root, value)
+
+    def _insert_recursive_helper(self, current, value):
+        if value < current.value:
+            if current.left is None:
+                current.left = Node(value)
+            else:
+                self._insert_recursive_helper(current.left, value)
+        else:
+            if current.right is None:
+                current.right = Node(value)
+            else:
+                self._insert_recursive_helper(current.right, value)
+
+    def traverse_itter(self):
+        current = self.root
+        stack = [current]
+        visited = []
+        i = 0
+
+        while stack:
+            current = stack.pop()
+            if current.left:
+                stack.append(current.left)
+            if current.right:
+                stack.append(current.right)
+            visited.append(current)
+            i += 1
+        return visited, i
+
+    def traverse_recursive(self):
+        visited= []
+        return self._traverse_recursive_helper(self.root, visited)
+
+    def _traverse_recursive_helper(self, current, stack):
+        stack.append(current)
+        if current.left:
+            self._traverse_recursive_helper(current.left, stack)
+        if current.right:
+            self._traverse_recursive_helper(current.right, stack)
+        return stack
+
+
+tree = BinaryTree(9)
+tree.insert_recursiv(7)
+tree.insert_recursiv(13)
+tree.insert_recursiv(5)
+tree.insert_recursiv(11)
+tree.insert_recursiv(14)
+
+tree.traverse_itter()
