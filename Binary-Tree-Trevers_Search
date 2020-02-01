@@ -1,0 +1,65 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        return f'<{self.value}>'
+
+    def insert(self, value):
+        return self._insert_helper(self, value)
+
+    def _insert_helper(self, current, value):
+        if value < current.value:
+            if current.left is None:
+                current.left = Node(value)
+            else:
+                self._insert_helper(current.left, value)
+        else:
+            if current.right is None:
+                current.right = Node(value)
+            else:
+                self._insert_helper(current.right, value)
+
+    def traverse(self):
+        visited = []
+        return self._traverse_helper(self, visited)
+
+    def _traverse_helper(self, current, visited):
+
+        visited.append(current)  # Pre-Order
+        if current.left:
+            self._traverse_helper(current.left, visited)
+        # visited.append(current) In-Order
+        if current.right:
+            self._traverse_helper(current.right, visited)
+        # visited.append(current) Post-Order
+
+        return visited
+
+    def traverse_iterr(self):
+        current = self
+        stack = [current]
+        visited = []
+        while stack:
+            current = stack.pop(0)
+            if current.left:
+                stack.append(current.left)
+            if current.right:
+                stack.append(current.right)
+            visited.append(current)
+
+        return visited
+
+
+root = Node(10)
+root.insert(2)
+root.insert(30)
+root.insert(17)
+root.insert(50)
+root.insert(60)
+root.insert(170)
+
+print(root.traverse())
+print(root.traverse_iterr())
