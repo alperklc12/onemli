@@ -1,0 +1,76 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+    def __repr__(self):
+        return f'<{self.value}>'
+
+
+class LinkList:
+    def __init__(self):
+        self.head = None
+
+    def insert_to_head(self, value):
+        new_node = Node(value)
+
+        if self.head is None:
+            self.head = new_node
+            return
+
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_to_end(self, value):
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+
+        prev = None
+        current = self.head
+
+        while current:
+            prev = current
+            current = current.next
+
+        prev.next = new_node
+
+    def look_up(self, value):
+        current = self.head
+        while current:
+            if value == current.value:
+                return current
+            else:
+                current = current.next
+        else:
+            return f'{value} is not in list'
+
+    def travers(self):
+        current = self.head
+        visited = []
+        while current:
+            visited.append(current)
+            current = current.next
+        return visited
+
+    def length(self):
+        i = 0
+        current = self.head
+        while current:
+            current = current.next
+            i += 1
+        return i
+
+
+link_lst = LinkList()
+
+link_lst.insert_to_head(10)
+link_lst.insert_to_head(20)
+link_lst.insert_to_head(30)
+link_lst.insert_to_head(40)
+link_lst.insert_to_head(50)
+link_lst.insert_to_head(60)
+print(link_lst.travers())
+link_lst.insert_to_end(200)
+print()
+print(link_lst.travers())
