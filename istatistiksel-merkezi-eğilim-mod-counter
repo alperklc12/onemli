@@ -1,0 +1,16 @@
+def mod_counter(arr: list):
+  arr.sort()
+  mod_count = {}
+
+  for i in arr:
+    if i not in mod_count:
+      mod_count[i] = 1
+    else:
+      mod_count[i] += 1
+  return mod_count
+
+
+
+lst = [12, 26, 17, 24, 12, 15, 19, 19, 12]
+
+print(mod_counter(lst))
