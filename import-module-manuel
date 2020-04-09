@@ -1,0 +1,27 @@
+import sys
+import os.path
+import types
+
+module_name = "modul1"
+module_file = "module_source.py"
+module_path = "."
+
+module_rel_fl_path = os.path.join(module_path, module_file)
+module_abs_fl_path = os.path.abspath(module_rel_fl_path)
+
+# read source code from file
+with open(module_abs_fl_path, "r") as code_fl:
+    source_code = code_fl.read()
+
+# create module object
+modl = types.ModuleType(module_name)
+modl.__file__ = module_abs_fl_path
+
+# set ref in sys.modules
+sys.modules[module_name] = modl
+
+# compile source code
+code = compile(source_code, filename=module_abs_fl_path, mode="exec")
+
+# execute compiled code
+exec(code, modl.__dict__)
