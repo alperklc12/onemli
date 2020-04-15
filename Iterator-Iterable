@@ -1,0 +1,26 @@
+class Cities:
+    def __init__(self):
+        self.cities = ['ankara', 'istanbul', 'izmir', 'adana', 'mersin']
+        
+    def __len__(self):
+        return len(self.cities)
+    
+    def __iter__(self):
+        return CitiesIterator(self)
+    
+    
+class CitiesIterator:
+    def __init__(self, iter_obj):
+        self.iter_obj = iter_obj
+        self.idx = 0  
+
+    def __next__(self):
+        if self.idx >= len(self.iter_obj.cities):
+            raise StopIteration
+        else:
+            temp = self.iter_obj.cities[self.idx]
+            self.idx += 1
+            return temp
+
+    def __iter__(self):
+        return self
