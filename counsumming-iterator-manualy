@@ -1,0 +1,31 @@
+from collections import namedtuple
+
+url = 'C:/Users/YOGA'.lower() + '/cars.csv'
+cars = []
+
+def cast(dt_type, value):
+    if dt_type == 'DOUBLE':
+        return float(value)
+    elif dt_type == 'INT':
+        return int(value)
+    else:
+        return str(value)
+
+def cast_row(dt_types, data_lst):
+    return [cast(dt_type, value) for dt_type, value in zip(dt_types, data_lst)]
+
+def app_fn(items):
+    with open(url, 'r') as file:
+        row_num = 0
+        for line in file:
+            if row_num == 0:
+                header = line.strip('\n').split(';')
+                Car = namedtuple('Car', header)
+            elif row_num == 1:
+                types_row = line.strip('\n').split(';')
+            else:
+                data = line.strip('\n').split(';')
+                data = cast_row(types_row, data)
+                car = Car(*data)
+                items.append(car)
+            row_num += 1  
