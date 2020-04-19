@@ -1,0 +1,22 @@
+url = 'C:/Users/YOGA'.lower() + '/cars.csv'
+
+def cast(dt_type, value):
+    if dt_type == 'DOUBLE':
+        return float(value)
+    elif dt_type == 'INT':
+        return float(value)
+    else:
+        return str(value)
+
+def cast_row(types_row, data):
+    return [cast(dt_type, value) for dt_type, value in zip(types_row, data)]
+
+from collections import namedtuple
+
+with open(url, 'r') as file:
+    itr_obj = iter(file)
+    header = next(itr_obj).strip('\n').split(';')
+    Car = namedtuple('Car', header)
+    types_row = next(itr_obj).strip('\n').split(';')
+    
+    cars = [Car(*cast_row(types_row, line.strip('\n').split(';'))) for line in itr_obj]
