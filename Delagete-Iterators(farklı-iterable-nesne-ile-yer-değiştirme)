@@ -1,0 +1,20 @@
+from collections import namedtuple
+
+Person = namedtuple('Person', 'first last')
+
+class PersonsName:
+    def __init__(self, persons):
+        try:
+            self._persons = [name.first + ' ' + name.last for name in persons]
+        except (TypeError, AttributeError):
+            self._persons = []
+    
+    def __iter__(self):
+        return iter(self._persons)
+
+persons_ = [Person('alper', 'kılıç'), Person('hasan', 'hüseyin')]
+
+persons_name = PersonsName(persons_)
+
+for item in persons_name:
+    print(item)
