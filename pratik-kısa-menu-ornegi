@@ -1,0 +1,47 @@
+MENU_PROMT = '1-[A]dd\n2-[L]ist\n3-[F]ind\n4-[Q]uit'
+movies = []
+
+
+def add_fn():
+    title = input('Enter Title: ')
+    director = input('Enter Director: ')
+    year = input('Enter Year: ')
+
+    movies.append({'title': title, 'director': director, 'year': year})
+
+
+def list_fn():
+    for movie in movies:
+        show_fn(movie)
+
+
+def find_fn():
+    key = input('Enter movie name for search')
+    for movie in movies:
+        if key == movie['title']:
+            print(movie)
+    else:
+        print('Nothing')
+
+
+def show_fn(mov):
+    print(f"Title: {mov['title']}")
+    print(f"Director: {mov['director']}")
+
+
+menu_dict = {'a': add_fn, 'l': list_fn, 'f': find_fn}
+
+
+def menu():
+    selection = input(MENU_PROMT)
+    while selection != 'q':
+        if selection in menu_dict:
+            selection_fn = menu_dict[selection]
+            selection_fn()
+        else:
+            print('Good By')
+
+        selection = input(MENU_PROMT)
+
+
+menu()
