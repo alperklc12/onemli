@@ -1,0 +1,25 @@
+def anagram(s1, s2):
+    wrd1 = s1.replace(' ', '').lower()
+    wrd2 = s2.replace(' ', '').lower()
+    
+    if len(wrd1) != len(wrd2):
+        return False
+    
+    count = {}
+    
+    for leter in wrd1:
+        if leter in count:
+            count[leter] += 1
+        else:
+            count[leter] = 1
+    for leter in wrd2:
+        if leter in count:
+            count[leter] -= 1
+        else:
+            count[leter] = 1
+    
+    for j in count:
+        if count[j] != 0:
+            return False
+    else:
+        return True
