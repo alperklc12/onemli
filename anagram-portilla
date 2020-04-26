@@ -1,0 +1,21 @@
+st1 = 'dog'
+st2 = 'god'
+st3 = 'od g'
+st4 = 'godg'
+st5 = 'dog'
+st6 = 'clint eastwood'
+st7 = 'old west action'
+
+def anagram(s1: str, s2: str):
+    tmp1 = sorted(s1.replace(' ', ''))
+    tmp2 = sorted(s2.replace(' ', ''))
+    if s1 == s2:
+        return False
+    
+    if len(tmp1) == len(tmp2):
+        for i, j in zip(tmp1, tmp2):
+            if i != j:
+                return False
+        return True
+    else:
+        return 'It is not anagram'  
