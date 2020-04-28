@@ -1,0 +1,32 @@
+tc_id = input('Enter your id num')
+
+
+def _func(tc_id_):
+    sum1 = 0
+    sum2 = 0
+    sum3 = 0
+
+    for i in range(9):
+        if i % 2 == 0:
+            sum1 += int(tc_id_[i])
+        else:
+            sum2 += int(tc_id_[i])
+
+    char_10 = (sum1 * 7 - sum2) % 10
+
+    for i in range(10):
+        sum3 += int(tc_id_[i])
+
+    char_11 = sum3 % 10
+
+    return char_10, char_11
+
+
+def control_tc(tc_id_, x, y):
+    if int(tc_id_[9]) == x and int(tc_id_[10]) == y:
+        print('10. and 11. char is True')
+    else:
+        print('Id nums valid!')
+
+
+control_tc(tc_id, *_func(tc_id))
