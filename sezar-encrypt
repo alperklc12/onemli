@@ -1,0 +1,24 @@
+def encryption(text):
+    b = ''
+    for i in text:
+        c = ord(i)
+        c += 3
+        b = b + chr(c)
+    return b
+
+
+def decrypt(text):
+    d = ''
+    for i in text:
+        c = ord(i)
+        c -= 3
+        d = d + chr(c)
+    return d
+
+
+text_ = 'alper oraya gelecek'
+data = encryption(text_)
+print(data)
+
+data_ = decrypt(data)
+print(data_)
