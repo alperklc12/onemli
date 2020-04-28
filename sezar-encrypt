@@ -3,7 +3,7 @@ def encryption(text):
     for i in text:
         c = ord(i)
         c += 3
-        b = b + chr(c)
+        b += chr(c)
     return b
 
 
@@ -12,7 +12,7 @@ def decrypt(text):
     for i in text:
         c = ord(i)
         c -= 3
-        d = d + chr(c)
+        d += chr(c)
     return d
 
 
