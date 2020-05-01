@@ -1,0 +1,14 @@
+class Geeks: 
+     def __init__(self): 
+          self._age = 0
+    
+     @property
+     def age(self): 
+         print("getter method called") 
+         return self._age 
+   
+     @age.setter 
+     def age(self, a): 
+         if(a < 18): 
+            raise ValueError("Sorry you age is below eligibility criteria")
+         self._age = a 
