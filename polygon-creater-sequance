@@ -1,0 +1,54 @@
+import math
+
+
+class Polygon:
+    def __init__(self, n, R):
+        self._n = n
+        self._R = R
+
+    def __repr__(self):
+        return f'Polygon: n={self._n} R={self._R}'
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self._n == other._n and self._R == other._R
+        else:
+            return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, self.__class__):
+            return self.egdge > other.egdge
+        else:
+            return NotImplemented
+
+    @property
+    def egdge(self):
+        return self._n
+
+    @property
+    def interior_angle(self):
+        return (self._n - 2) * (180 / self._n)
+
+    @property
+    def edge_length(self):
+        return 2 * self._R * math.sin(math.pi / self._n)
+
+    @property
+    def apothem(self):
+        return self._R * math.cos(math.pi / self._n)
+
+    @property
+    def area(self):
+        return (1/2)*(self._n * self.apothem * self.edge_length)
+
+    @property
+    def perimeter(self):
+        return self.edge_length * self._n
+
+
+def test_polygon():
+    p = Polygon(3, 1)
+    assert str(p) == f'Polygon: n=3 R=1', f'Actuel: {str(p)}'
+    assert p.egdge == 3, f'Actuel: {p.egdge}'
+    p = Polygon(6, 1)
+    assert p.interior_angle == 120, f'Actuel: {p.interior_angle}'
