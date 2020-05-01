@@ -1,0 +1,24 @@
+class FixedFloat:
+    def __init__(self, amount):
+        self.amount = amount
+
+    def __repr__(self):
+        return f'<FixedFloat: {self.amount:.2f}>'
+
+    @classmethod
+    def from_sum(cls, val1, val2):
+        return cls(val1 + val2)
+
+
+class Dolar(FixedFloat):
+    def __init__(self, amount):
+        super(Dolar, self).__init__(amount)
+        self.symbol = '$'
+
+    def __repr__(self):
+        return f'<Dolar: {self.amount:.2f}{self.symbol}>'
+
+
+money = Dolar.from_sum(16.5422, 3.5674)
+
+print(money)
