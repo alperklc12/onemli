@@ -1,0 +1,34 @@
+class Car:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+
+    def __repr__(self):
+        return f'<Car: {self.make} {self.model}>'
+
+
+class Garage:
+    def __init__(self):
+        self.cars = []
+
+    def __len__(self):
+        return len(self.cars)
+
+    def __getitem__(self, item):
+        return self.cars[item]
+
+    def add_car(self, car):
+        if not isinstance(car, Car):
+            raise TypeError(f"Tried to add a '{car.__class__.__name__}' to the garage! You can only add Car obj")
+        self.cars.append(car)
+
+
+ford = Garage()
+
+fiesta = Car('ford', 'fiesta')
+focus = Car('ford', 'focus')
+mondeo = 'mondeo'
+
+ford.add_car(fiesta)
+ford.add_car(focus)
+print(ford.cars)
