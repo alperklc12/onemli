@@ -1,8 +1,9 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
-temp_st = '05.05.2017'
-print(temp_st, type(temp_st))
-temp_dt = datetime.strptime(temp_st, '%d.%m.%Y')
-print(temp_dt, type(temp_dt))
-temp_st2 = datetime.strftime(temp_dt, '%d.%m.%Y')
-print(temp_st2, type(temp_st2))
+date_str = '05.03.2017'
+date_car = datetime.strptime(date_str, '%d.%m.%Y')
+date_now = datetime.now()
+date_extract = date_car + timedelta(days=365)
+date_tm = datetime(2017, 3, 5)
+print(type(date_tm))
+
