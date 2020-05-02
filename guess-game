@@ -1,0 +1,21 @@
+import random
+
+rnd_num = random.randint(1, 100)
+step = int(input('Enter num'))
+score = 100
+times = 0
+
+while step > 0:
+    step -= 1
+    times += 1
+    guess = int(input('Enter your guess:'))
+    if guess == rnd_num:
+        print(f'You know rnd num {guess} {(score / step)*times}.')
+        break
+    elif guess < rnd_num:
+        print('Up')
+    elif guess > rnd_num:
+        print('Down')
+
+    if step == 0:
+        print('You have exceeded.')
