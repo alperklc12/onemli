@@ -1,0 +1,8 @@
+from datetime import datetime
+
+temp_st = '05.05.2017'
+print(temp_st, type(temp_st))
+temp_dt = datetime.strptime(temp_st, '%d.%m.%Y')
+print(temp_dt, type(temp_dt))
+temp_st2 = datetime.strftime(temp_dt, '%d.%m.%Y')
+print(temp_st2, type(temp_st2))
