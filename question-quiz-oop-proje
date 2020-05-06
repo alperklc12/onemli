@@ -1,0 +1,59 @@
+class Question:
+    def __init__(self, text, choices, answer):
+        self.text = text
+        self.choices = choices
+        self.answer = answer
+
+    def check_answer(self, option):
+        return option == self.answer
+
+
+class Quiz:
+    def __init__(self, questions):
+        self.questions = questions
+        self.score = 0
+        self.question_idx = 0
+
+    def show_score(self):
+        print(f'Score: {self.score}')
+
+    @property
+    def length(self):
+        return len(self.questions)
+
+    def _get_question(self):
+        return self.questions[self.question_idx]
+
+    def _display_question(self):
+        question = self._get_question()
+        print(f'{self.question_idx + 1}) {question.text}')
+
+        for k, v in zip('abcd', question.choices):
+            print(f'\t{k}) {v}')
+
+        answer = input('Cevap: ')
+        self._guess(answer, question)
+
+    def _guess(self, answer, question):
+        if question.check_answer(answer):
+            self.score += 1
+        self.question_idx += 1
+
+    def load_question(self):
+        if len(self.questions) == self.question_idx:
+            self.show_score()
+        else:
+            self._display_question()
+
+
+q1 = Question('Which is the best programing language?', ['python', 'java', 'javascript', 'c++'], 'python')
+q2 = Question('Which is the most populer programing language?', ['c++', 'javascript', 'java', 'python'], 'javascript')
+q3 = Question('What is the worst syntaxed language?', ['python', 'php', 'javascript', 'c++'], 'php')
+
+question_lst = [q1, q2, q3]
+
+quiz = Quiz(question_lst)
+
+for i in range(quiz.length):
+    quiz.load_question()
+quiz.show_score()
