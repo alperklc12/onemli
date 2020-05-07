@@ -1,0 +1,18 @@
+class MyClassA:
+    class_atrribut = 0
+
+    @classmethod
+    def increment(cls):
+        MyClassA.class_atrribut += 1
+
+
+class MyClassB:
+    def increment(self):
+        MyClassA.increment()
+
+
+obj_b = MyClassB()
+
+print(MyClassA.class_atrribut)
+obj_b.increment()
+print(MyClassA.class_atrribut)
