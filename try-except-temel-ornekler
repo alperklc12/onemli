@@ -1,0 +1,74 @@
+# lst = ['-1', '2', '5', '10b', 'abc']
+# 
+# 
+# for e in lst:
+#     try:
+#         print(int(e))
+#     except:
+#         continue
+# 
+# for e in lst:
+#     try:
+#         temp = int(e)
+#         print(temp)
+#     except ValueError:
+#         continue
+# 
+# 
+# while True:
+#     try:
+#         inp = int(input('Enter num'))
+#     except:
+#         break
+# print('test')
+# 
+# while True:
+#     inp = input('Enter num')
+#     if inp == 'q':
+#         break
+#     try:
+#         temp = int(inp)
+#     except ValueError:
+#         print('Geçersiz')
+#         continue
+# 
+# 
+# chr_st = 'çüışğö'
+# 
+# inp = input('Enter your name')
+# for lt in inp:
+#     if lt in chr_st:
+#         raise Exception("You cant use '{}'".format(chr_st))
+#         raise TypeError("You cant use '{}'".format(chr_st))
+#     #   raise "You cant use '{}'".format(chr_st)
+# 
+# def control():
+#     tr_chr = 'çüışğö'
+#     inp = input('Enter your name')
+#     for ltr in inp:
+#         if ltr in tr_chr:
+#             raise TypeError('Geçersiz isim')
+# 
+# 
+# try:
+#     control()
+# except TypeError as err:
+#     print(err)
+# 
+# 
+# def factorial(n):
+#     fact = 1
+#     idx = 1
+#     while idx <= n:
+#         fact *= idx
+#         idx += 1
+#     return fact
+# 
+# 
+# for i in lst:
+#     try:
+#         rusalt = factorial(int(i))
+#     except (ValueError, TypeError) as err:
+#         print(err)
+#         continue
+#     print(rusalt)
