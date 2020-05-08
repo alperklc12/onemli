@@ -1,0 +1,18 @@
+def outer(num1):
+    if num1 < 0:
+        raise ValueError('Number must be pozitif')
+    if not isinstance(num1, int):
+        raise TypeError('Must be integer')
+    def inner(num2):
+        if num2 <= 1:
+            return 1
+        else:
+            return num2 * inner(num2 - 1)
+
+    return inner(num1)
+
+
+try:
+    print(outer(-1))
+except Exception as ex:
+    print(ex)
