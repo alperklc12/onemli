@@ -1,0 +1,12 @@
+def authority(page):
+    def inner(role):
+        if role == 'admin':
+            print('{} can access the {}'.format(role, page))
+        else:
+            print('{} can not access the {}'.format(role, page))
+
+    return inner
+
+
+user = authority('admin pages')
+user('user')
