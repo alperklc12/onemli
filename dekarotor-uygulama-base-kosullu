@@ -1,0 +1,20 @@
+def operation_fn(operation):
+    def mul_(*args):
+        rusalt = 1
+        for e in args:
+            rusalt *= e
+        return rusalt
+
+    def sum_(*args):
+        rusalt = 0
+        for e in args:
+            rusalt += e
+        return rusalt
+
+    if operation == 'mul':
+        return mul_
+    else:
+        return sum_
+
+opr_fnc = operation_fn('sum')
+print(opr_fnc(1, 2, 3, 4))
