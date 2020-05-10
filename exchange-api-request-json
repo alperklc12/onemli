@@ -1,0 +1,14 @@
+import requests
+import json
+
+api_url = 'https://api.exchangeratesapi.io/latest?base='
+
+currency_base = input("Enter<TRY>:  ").upper()
+currency_change = input("Enter<USD>:  ").upper()
+amount = int(input('Enter amount'))
+
+exchange = requests.get(api_url + currency_base).text
+exchange_dict = json.loads(exchange)['rates']
+
+result = amount * float(exchange_dict[currency_change])
+print(result)
