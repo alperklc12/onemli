@@ -1,0 +1,15 @@
+import json
+
+class User:
+    def __init__(self, username, password, email):
+        self.username = username
+        self.password = password
+        self.email = email
+
+temp = User('alper', 1234, 'alp@gmail.com')
+temp2 = temp.__dict__
+temp3 = json.dumps(temp2)
+print(temp2)
+print(type(temp2))
+print(temp3)
+print(type(temp3))
