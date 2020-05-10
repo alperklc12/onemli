@@ -1,0 +1,98 @@
+import json
+import os
+
+
+class User:
+    def __init__(self, username, password, email):
+        self.username = username
+        self.password = password
+        self.email = email
+
+
+class UserRepository:
+    def __init__(self):
+        self.users = []
+        self.is_logged_in = False
+        self.current_user = None
+
+        self.load_users_fn()
+
+    def load_users_fn(self):
+        if os.path.exists('user.json'):
+            with open('user.json', 'r', encoding='utf-8') as file:
+                users = json.load(file)
+            for user in users:
+                new_user = User(user['username'], user['password'], user['email'])
+                self.users.append(new_user)
+
+    def register_fn(self, user: User):
+        self.users.append(user)
+        self.save_to_file_fn()
+        print('\nNew user added')
+
+    def login_fn(self, username, password):
+        for user in self.users:
+            if user.username == username and user.password == password:
+                self.is_logged_in = True
+                self.current_user = user
+                print('\nLogged in')
+                break
+        else:
+            print('\nAcces denied')
+
+    def logout_fn(self):
+        self.is_logged_in = False
+        self.current_user = None
+        print('\nLogged out')
+
+
+    def identity_fn(self):
+        if self.is_logged_in:
+            print(f'\nLogger Username: {self.current_user.username}')
+        else:
+            print('\nNo one logged!!!')
+
+    def save_to_file_fn(self):
+        lst = [e.__dict__ for e in self.users]
+
+        with open('user.json', 'w', encoding='utf-8') as file:
+            json.dump(lst, file)
+           
+   
+ 
+from classes import UserRepository, User
+
+repository = UserRepository()
+
+
+def app():
+    while True:
+        print('Menu'.center(30, '*'))
+        inp = input('1- Register\n2- Login\n3- Logout\n4- Identity\n5- E[x]it\n Choice:')
+
+        if inp == 'x':
+            break
+        elif inp == '1':
+            username = input('Enter username: ')
+            password = input('Enter password: ')
+            email = input('Enter email: ')
+
+            user = User(username, password, email)
+            repository.register_fn(user)
+
+        elif inp == '2':
+            username = input('Enter username: ')
+            password = input('Enter password: ')
+
+            repository.login_fn(username, password)
+
+        elif inp == '3':
+            repository.logout_fn()
+
+        elif inp == '4':
+            repository.identity_fn()
+        else:
+            print('wrong choice!')
+
+
+app()
