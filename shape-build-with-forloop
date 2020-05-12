@@ -1,0 +1,31 @@
+for i in range(5):
+    for j in range(5 - i) :
+        print('#', end='')
+    print('\n', end='')
+    
+output 
+
+#####
+####
+###
+##
+#
+
+******************************************
+
+import math
+
+for idx, i in enumerate([int(math.fabs(e)) for e in list(range(3, -4, -1))]):
+    for j in range(1, 5-i):
+        print('#', end='')
+    print()
+    
+output 
+
+#
+##
+###
+####
+###
+##
+#
