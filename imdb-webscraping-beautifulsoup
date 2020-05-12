@@ -1,0 +1,14 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
+response = requests.get(url).content
+
+soup = BeautifulSoup(response, 'html.parser')
+rows = soup.find('div', {'class': 'lister-list'}).find_all('div', {'class': 'lister-item'}, limit=10)
+
+for k, row in enumerate(rows, 1):
+    title = row.find('h3').find('a').text
+    year = int(row.find('h3').find('span', {'class': 'lister-item-year'}).text.strip('()'))
+    rating = float(row.find('div', {'class': 'ratings-bar'}).find('strong').text)
+    print(f"{k}, {title.ljust(20)}, {year}, {rating}")
