@@ -1,0 +1,37 @@
+'C:\\Users\\Hp\\PycharmProjects\\project'  absulute path
+'C:\\Users\\Hp\\PycharmProjects\\projects\\deneme'  relative path
+
+
+for item in fl:
+    if os.path.isdir(os.path.abspath(os.path.join('deneme', item))):
+        continue
+    print(item)
+    
+    
+    for item in fl:
+    if os.path.isdir(os.path.join(full_path, item)):
+        continue
+    print(item)
+    
+    
+    
+    for item in fl:
+    if os.path.isdir(full_path + '\\' + item):
+        continue
+    print(item)
+
+
+
+
+my_lst = os.listdir(full_path)
+
+# my_lst = ['belge1.txt', 'belge2.txt', 'klasor1', 'klasor2']
+
+for item in my_lst:
+    full_path = os.path.join('deneme', item)
+    if os.path.isdir(full_path):
+        continue
+    print(item)
+    
+belge1.txt
+belge2.txt
