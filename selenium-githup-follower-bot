@@ -1,0 +1,56 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from githup_info import USERNAME, PASSWORD
+
+
+class Githup:
+    def __init__(self, username, password):
+        self.browser = webdriver.Chrome('chromedriver.exe')
+        self.username = username
+        self.password = password
+        self.fallowers = []
+
+    def sing_in_fn(self):
+        self.browser.get('https://github.com/login')
+        time.sleep(1)
+
+        self.browser.find_element_by_xpath('//*[@id="login_field"]').send_keys(self.username)
+        self.browser.find_element_by_xpath('//*[@id="password"]').send_keys(self.password)
+        time.sleep(1)
+
+        self.browser.find_element_by_xpath('//*[@id="login"]/form/div[4]/input[9]').click()
+        time.sleep(1)
+
+    def _load_fallowers_fn(self):
+        items = self.browser.find_elements_by_css_selector('.d-table.table-fixed')
+        for key, item in enumerate(items, 1):
+            self.fallowers.append(f"{key}, {item.find_element_by_css_selector('.link-gray').text}")
+
+    def get_fallowers_fn(self, username):
+        self.browser.get(f'https://github.com/{username}?tab=followers')
+        time.sleep(1)
+        self._load_fallowers_fn()
+        while True:
+            items = self.browser.find_elements_by_css_selector('.paginate-container a')
+            if len(items) == 1:
+                if items[0].text == 'Next':
+                    items[0].click()
+                    time.sleep(1)
+                    self._load_fallowers_fn()
+                else:
+                    break
+            else:
+                for item in items:
+                    if item.text == 'Next':
+                        item.click()
+                        time.sleep(1)
+                        self._load_fallowers_fn()
+        return self.fallowers
+
+
+githup = Githup(USERNAME, PASSWORD)
+rusalt = githup.get_fallowers_fn('sadikturan')
+print(len(rusalt))
+for name in rusalt:
+    print(name)
