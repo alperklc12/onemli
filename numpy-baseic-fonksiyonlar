@@ -1,0 +1,21 @@
+import numpy as np
+
+arr1 = np.array([10, 15, 30, 45, 60])
+arr2 = np.arange(5, 15)
+arr3 = np.arange(50, 100, 5)
+arr4 = np.zeros(10, dtype=int)
+arr5  =np.ones(10, dtype=int)
+arr6 = np.linspace(0, 100, 5)
+arr7 = np.random.randint(10, 30, 5)
+arr8 = np.linspace(-1, 1, 10)
+arr9 = np.random.randn(10)
+arr10 = np.random.randint(10, 50, 15).reshape(3, 5)
+
+print(arr10)
+rusalt1 = arr10.sum(axis=1)
+rusalt2 = arr10.sum(axis=0)
+print(rusalt1)
+print(rusalt2)
+print(arr10.max())
+print(arr10.min())
+print(arr10.mean())
