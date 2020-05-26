@@ -1,0 +1,9 @@
+def add_student_fn():
+    sql = "INSERT INTO student (name, number, birthdate, gender) VALUES (%s, %s, %s, %s)"
+    value = ('deli', 1000, datetime(1990,1,1), 'k')
+    cursor.execute(sql,value)
+    connection.commit()
+    connection.close()
+
+
+add_student_fn()
