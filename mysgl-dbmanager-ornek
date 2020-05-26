@@ -1,0 +1,68 @@
+import mysql.connector
+from datetime import datetime
+from student_md import StudentCls
+from class_md import ClassCls
+
+
+class DbManager:
+    def __init__(self):
+        self.connection = mysql.connector.connect(host='localhost', user='root', password='12345', database='scholdb')
+        self.cursor = self.connection.cursor()
+
+    def __del__(self):
+        self.connection.close()
+
+    def add_student_fn(self, student: StudentCls):
+        sql = "INSERT INTO student (name, number, birthdate, gender) VALUES (%s, %s, %s, %s)"
+        value = (student.name, student.number, student.birthdate, student.gender)
+
+        try:
+            self.cursor.execute(sql, value)
+            self.connection.commit()
+        except mysql.connector.Error as err:
+            print(err)
+
+    def edit_student_fn(self, student: StudentCls):
+        sql = "UPDATE student SET name=%s, number=%s, birthdate=%s, gender=%s, classId=%s WHERE ID=%s"
+        value = (student.name, student.number, student.birthdate, student.gender, student.class_id, student.id_)
+
+        try:
+            self.cursor.execute(sql, value)
+            self.connection.commit()
+        except mysql.connector.Error as err:
+            print(err)
+
+    def get_student_by_id_fn(self, id_):
+        sql = "SELECT * FROM student WHERE Id=%s"
+        value = (id_,)
+
+        try:
+            self.cursor.execute(sql, value)
+            student_data = self.cursor.fetchone()
+            return StudentCls(student_data[1],
+                              student_data[2],
+                              student_data[3],
+                              student_data[4],
+                              class_id=student_data[5],
+                              id_=student_data[0])
+        except mysql.connector.Error as err:
+            print(err)
+
+    def add_class_fn(self, class_name):
+        sql = "INSERT INTO class (name) VALUES (%s)"
+
+        try:
+            self.cursor.execute(sql, (class_name,))
+            self.connection.commit()
+        except mysql.connector.Error as err:
+            print(err)
+
+    def edit_class_fn(self, class_par: ClassCls):
+        sql = "UPDATE class SET name=%s, teacherId=%s WHERE Id=%s"
+        value = (class_par.name, class_par.teachear_id, class_par.id_)
+
+        try:
+            self.cursor.execute(sql, value)
+            self.connection.commit()
+        except mysql.connector.Error as err:
+            print(err)
