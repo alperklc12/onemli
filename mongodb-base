@@ -1,0 +1,29 @@
+import pymongo
+from bson.objectid import ObjectId
+
+client = pymongo.MongoClient("mongodb://localhost:27017")
+
+school_db = client["schooldb"]
+student_collection = school_db["student"]
+
+# student1 = {"name": "alper", "number": 56}
+#
+# student_collection.insert_one(student1)
+# student_collection.insert_one({"name": "hasan", "number": 156, "exams": [90, 20, 30]})
+# filter_ = {"name": "alper"}
+# rusalt = student_collection.find(filter_, {"_id":0})
+# student_collection.insert_one({"name":"ali", "number": 234})
+# rusalt = student_collection.find_one({"name": "alper"},{"_id": 0})
+# rusalt = student_collection.find_one({"_id": ObjectId("5ed43311a1dabab625513524")},{"_id": 0})
+# rusalt = student_collection.find({"name": {"$in": ["ali", "alper"]}}, {"_id":0})
+# rusalt = student_collection.find({"number": {"$gte": 156}}, {"_id":0})
+
+# rusalt = student_collection.find({"name": {"$regex": "^al"}}, {"_id":0})
+# rusalt = student_collection.find({}, {"_id":0}).sort("number", -1)
+# student_collection.update_one({"name": "alper"},{"$set":{
+#                                "exams": [80, 60, 50]}})
+
+# student_collection.insert_one({"name": "veli", "number": 125})
+# student_collection.delete_one({"name": "veli"})
+
+# student_collection.delete_many({"name": {"$regex": "^h"}})
