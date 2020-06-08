@@ -1,0 +1,42 @@
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QLineEdit, QPushButton)
+from PyQt5.QtGui import QIcon
+
+
+def window_fn():
+    app = QApplication(sys.argv)
+    window = QMainWindow()
+
+    window.setWindowTitle('Deneme')
+    window.setGeometry(100, 100, 400, 400)
+    window.setWindowIcon(QIcon("dir_icon.png"))
+    window.setToolTip('My Window')
+
+    lbl_name = QLabel(window)
+    lbl_name.setText("Name: ")
+    lbl_name.move(50, 30)
+    lbl_surname = QLabel(window)
+    lbl_surname.setText("Surname: ")
+    lbl_surname.move(50, 70)
+    txt_name = QLineEdit(window)
+    txt_name.setPlaceholderText("Name")
+    txt_name.resize(150, 30)
+    txt_name.move(150, 30)
+    txt_surname = QLineEdit(window)
+    txt_surname.setPlaceholderText("Surname")
+    txt_surname.resize(150, 30)
+    txt_surname.move(150, 70)
+
+    def btn_save_fn():
+        print(txt_name.text() + " " + txt_surname.text())
+
+    btn_save = QPushButton("Save", window)
+    btn_save.setText("Save")
+    btn_save.move(150, 120)
+    btn_save.clicked.connect(btn_save_fn)
+
+    window.show()
+    sys.exit(app.exec())
+
+
+window_fn()
