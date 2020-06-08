@@ -1,0 +1,54 @@
+class Ogrenci:
+    grades = []
+    def __init__(self, name, no):
+        self.name = name
+        self.no = no
+ 
+    def get_name(self):
+        return self.name
+ 
+    def get_no(self):
+        return self.no
+ 
+    def add_grade(self, grade):
+        self.grades.append(grade)
+ 
+    def avarage(self):
+        topl = 0
+ 
+        for item in self.grades:
+            topl += item
+        return topl / len(self.grades)
+ 
+ 
+    def ortalama_goster(self):
+        return self.avarage()
+ 
+ 
+    def __repr__(self):
+        return self.name + str(self.no)
+ 
+class Sinif:
+    ogrenciler = []
+    def __init__(self, name):
+        self.name = name
+ 
+    def ogrenci_ekle(self, name, no):
+        self.ogrenci_nesnesi = Ogrenci(name, no)
+        self.ogrenciler.append(self.ogrenci_nesnesi)
+ 
+ 
+snf_a = Sinif("11/A")
+snf_a.ogrenci_ekle("alper", 43)
+snf_a.ogrenci_ekle("hasan", 47)
+snf_a.ogrenci_ekle("ali", 44)
+ 
+print(snf_a.ogrenciler)
+print(snf_a.ogrenciler[0].get_name())
+print(snf_a.ogrenciler[0].get_no())
+ 
+snf_a.ogrenciler[0].add_grade(80)
+snf_a.ogrenciler[0].add_grade(70)
+snf_a.ogrenciler[0].add_grade(60)
+ 
+print(snf_a.ogrenciler[0].ortalama_goster())

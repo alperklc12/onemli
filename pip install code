@@ -1,0 +1,3 @@
+python -m pip install packagename
+python -m pip uninstall packagename
+python -m pip install --upgrade packagename

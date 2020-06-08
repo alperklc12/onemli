@@ -1,0 +1,15 @@
+import requests
+from bs4 import BeautifulSoup
+
+PAGE_LOC = 'div.quote'
+CONTENT_LOC = 'span.text'
+AUTHOR_LOC = 'small.author'
+TAG_LOC = 'div.tags a.tag'
+
+page_content = requests.get('http://quotes.toscrape.com/').content
+soup = BeautifulSoup(page_content, 'html.parser')
+
+all_page = soup.select(PAGE_LOC)
+
+for item in all_page:
+    print(f'{item.select_one(CONTENT_LOC).string} by {item.select_one(AUTHOR_LOC).string}')

@@ -1,0 +1,50 @@
+import random
+class Isci:
+ 
+    def __init__(self, sektor, emek_gucu):
+        self.sektor = sektor
+        self.emek_gucu = emek_gucu
+ 
+    def get_emek_gucu(self):
+        return self.emek_gucu
+ 
+    def emek_gucu_birim(self):
+        eg_l = self.get_emek_gucu() - 15
+        eg_h = self.get_emek_gucu() + 15
+        return random.randrange(eg_l, eg_h)
+ 
+    def __repr__(self):
+        return self.sektor + "->" + str(self.emek_gucu)
+ 
+ 
+class Devlet:
+ 
+    isciler = []
+ 
+    def __init__(self, name):
+        self.name = name
+ 
+    def isci_ekel(self, isci_nesnesi):
+        self.isci_nesnesi = isci_nesnesi
+        self.isciler.append(self.isci_nesnesi)
+ 
+    def toplam_uretim(self):
+        tpl_uretim = 0
+        for item in self.isciler:
+            tpl_uretim += item.emek_gucu_birim()
+        return tpl_uretim
+ 
+isci_a = Isci("tarım", 30)
+isci_b = Isci("tarım", 30)
+isci_c = Isci("sanayi", 50)
+ 
+tr = Devlet("Turkey")
+tr.isci_ekel(isci_a)
+tr.isci_ekel(isci_b)
+tr.isci_ekel(isci_c)
+ 
+print(tr.isciler)
+print(tr.isciler[0])
+print(tr.isciler[0].get_emek_gucu())
+ 
+print(tr.toplam_uretim())

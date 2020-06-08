@@ -1,0 +1,9 @@
+import requests
+from bs4 import BeautifulSoup
+
+content = requests.get('http://books.toscrape.com/').content
+soup = BeautifulSoup(content, 'html.parser')
+
+my_obj = soup.select_one('li.col-xs-6')
+title = my_obj.select_one('.product_pod h3 a').attrs['title']
+print(title)
