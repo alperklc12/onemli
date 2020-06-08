@@ -1,0 +1,65 @@
+import random
+
+
+class Creatur:
+    def __init__(self, name, level):
+        self.name = name
+        self.level = level
+
+    def __repr__(self):
+        return '{} -> {}'.format(self.name, self.level)
+
+    def get_defansive_roll(self):
+        return random.randint(1, 12) * self.level
+
+
+class Wisard(Creatur):
+    def __init__(self, name, level):
+        super().__init__(name, level)
+
+    def atack_fn(self, creature):
+        print('The wisard {} atacks {}!'.format(self.name, creature.name))
+
+        my_roll = self.get_defansive_roll()
+        creature_roll = creature.get_defansive_roll()
+
+        print()
+        print('My Roll: ', my_roll)
+        print('Creaturs Roll: ', creature_roll)
+        print()
+
+        if my_roll >= creature_roll:
+            print('The wisard handliy triumphed over {} is dead!'.format(creature.name))
+            return True
+        else:
+            print('The wisard has been defeated')
+            return False
+
+
+class SmallAnimal(Creatur):
+    def __init__(self, name, level):
+        super().__init__(name, level)
+
+    def get_defansive_roll(self):
+        base = super().get_defansive_roll()
+        return base / 2
+
+
+class Dragon(Creatur):
+    def __init__(self, name, level, scalinnes, breths_fire=False):
+        super().__init__(name, level)
+        self.breths_fire = breths_fire
+        self.scalinnes = scalinnes
+
+    def get_defansive_roll(self):
+        base = super().get_defansive_roll()
+
+        fire_modifer = 3 if self.breths_fire else 1
+        scalinnes_modifer = self.scalinnes / 10
+
+        # if self.breths_fire:
+        #     self.scalinnes = 3
+        # else:
+        #     self.scalinnes = 1
+
+        return base * fire_modifer * scalinnes_modifer

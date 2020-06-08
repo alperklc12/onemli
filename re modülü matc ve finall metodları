@@ -1,0 +1,3 @@
+patern = re.compile(r'([A-z]+),')
+# matc_obj = re.match(patern, location).group(1)
+matc_obj = re.findall(patern, location)[0]

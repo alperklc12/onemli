@@ -1,0 +1,1 @@
+$('div.current-temp span.wu-value').textContent

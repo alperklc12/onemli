@@ -1,0 +1,19 @@
+import requests
+import os
+import shutil
+
+def get_cats(folder, name):
+    url ='https://consuming-python-services-api.azurewebsites.net/cats/random'
+    data = get_data_url(url)
+    save_img(folder, name, data)
+
+
+def get_data_url(url):
+    response = requests.get(url, stream=True)
+    return response.raw
+
+
+def save_img(folder, name, data):
+    filename = os.path.join(folder, name + '.jpg')
+    with open(filename, 'wb') as f_out:
+        shutil.copyfileobj(data, f_out)

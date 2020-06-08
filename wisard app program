@@ -1,0 +1,70 @@
+import random
+import time
+from actors import Creatur, Wisard, SmallAnimal, Dragon
+
+
+def main():
+    header()
+    run_loop()
+
+
+def header():
+    print('------------------')
+    print('    WIZARD APP')
+    print('------------------')
+    print()
+
+
+def run_loop():
+    creatures = [
+        SmallAnimal('Toad', 5),
+        SmallAnimal('Tiger', 25),
+        SmallAnimal('Bat', 5),
+        Dragon('Dragon', 60, 40, True),
+        Wisard('Evil Wisard', 100)]
+
+    hero = Wisard('Gandalf', 75)
+
+    while True:
+        active_creature = random.choice(creatures)
+        print('Creature <{}> level <{}>'.format(active_creature.name,
+                                                active_creature.level))
+        print()
+
+        cmd = input('Do you [a]tack, [r]unawey or [l]ook around?')
+        if cmd == 'a':
+            if hero.atack_fn(active_creature):
+                creatures.remove(active_creature)
+            else:
+                print('The wisard hides')
+                for sec in range(5):
+                    print('.', end='')
+                    time.sleep(1)
+                print()
+
+        elif cmd == 'r':
+            print('The wisard runaway ')
+
+            for sec in range(5):
+                print('.', end='')
+                time.sleep(1)
+            print()
+
+        elif cmd == 'l':
+            print('The wisard {} looking araound'.format(hero.name))
+            print()
+            for c in creatures:
+                print('* A {} level is {}'.format(c.name, c.level))
+            print()
+
+        else:
+            print('Good By')
+            break
+
+        if not creatures:
+            print('\nAll enimes are DEAD')
+            break
+
+
+if __name__ == '__main__':
+    main()

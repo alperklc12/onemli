@@ -1,0 +1,48 @@
+import random
+import datetime
+
+
+def main():
+    header()
+    b_day = get_birthday()
+    now = datetime.datetime.now()
+    num_of_day = compute_days(b_day, now)
+    print_information(num_of_day)
+
+
+def header():
+    print('-------------------')
+    print('     Guess Num')
+    print('-------------------')
+    print()
+
+
+def get_birthday():
+    print('Tell us when you were ')
+    year = int(input('Year [YYYY]: '))
+    month = int(input('Month [MM]: '))
+    days = int(input('Day [DD]: '))
+
+    birthday = datetime.datetime(year, month, days)
+    return birthday
+
+
+def compute_days(orginal_day, now):
+    date1 = now
+    date2 = datetime.datetime(now.year, orginal_day.month, orginal_day.day)
+    dt = date1 - date2
+    days = int(dt.total_seconds() / 60 / 60 / 24)
+    return days
+
+
+def print_information(day):
+    if day > 0:
+        print('Your birthday is {} days ago'.format(day))
+    elif day < 0:
+        day = abs(day)
+        print('Your birthday is in {} days'.format(day))
+    else:
+        print('Heppy Birthday')
+
+
+main()

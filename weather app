@@ -1,0 +1,85 @@
+from bs4 import BeautifulSoup
+import requests
+import collections
+
+
+"""
+header
+location
+get html
+parse html
+display forecast
+"""
+
+wheather_raport = collections.namedtuple('WeatherReport',
+                                         'loc, temp, wetr')
+
+
+def main():
+    header()
+
+    code = input('Enter your location')
+
+    html = get_html(code)
+
+    raport = parse_html(html)
+
+    print('The temp in {} is {} and {}.\nHave a Nice Day'.format(raport.loc[:-2], raport.temp, raport.wetr))
+
+
+def header():
+    print('----------------------')
+    print('      WEATHER APP')
+    print('----------------------')
+    print()
+
+
+def get_html(loc):
+    url = 'https://www.wunderground.com/weather/tr/{}'.format(loc)
+    response = requests.get(url)
+    return response.text
+
+
+def parse_html(html):
+    """
+    title    ('div.columns h1').textContent
+    weather  ('div.condition-icon p').textContent
+    degree   ('div.current-temp span.wu-value').textContent
+    """
+
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # location2 = soup.find(class_='columns').find('h1').get_text()
+    # location2 = location2.strip()
+
+    location = soup.select('div.columns h1')[0].get_text()
+    weather = soup.select('div.condition-icon p')[0].get_text()
+    degree = soup.select('div.current-temp span.wu-value')[0].get_text()
+    degree = int(degree)
+    degree = int((degree - 32) / 1.8)
+
+    degree = "{}{}C".format(degree, '\u00B0')
+    
+    # import re
+    # patern = re.compile(r'([A-z]+),')
+    # matc_obj = re.match(patern, location).group(1)
+    # matc_obj = re.findall(patern, location)[0]
+
+    location = clean_up(location)
+    weather = clean_up(weather)
+    degree = clean_up(str(degree))
+
+    raport = wheather_raport(loc=location, temp=degree, wetr=weather)
+    return raport
+
+
+def clean_up(text):
+    if not text:
+        return text
+
+    text = text.strip()
+    return text
+
+
+if __name__ == '__main__':
+    main()
