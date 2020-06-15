@@ -1,0 +1,5 @@
+debt = 250.0000000
+
+print("Debt: %.2f" % debt)
+print("Debt: {:.2f}".format(debt))
+print(f"Debt: {debt:.2f}")
