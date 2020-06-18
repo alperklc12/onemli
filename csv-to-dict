@@ -1,0 +1,7 @@
+import csv
+
+
+def load_city():
+    with open("city_data.csv") as file:
+        data = list(csv.DictReader(file))
+    return data
