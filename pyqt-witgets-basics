@@ -1,0 +1,69 @@
+import sys
+from datetime import datetime
+from PyQt5.QtWidgets import (QMainWindow, QWidget, QApplication, QHBoxLayout, QVBoxLayout, QLabel, QTextEdit,
+                             QFormLayout, QLineEdit, QPushButton, QComboBox, QSpinBox, QDateTimeEdit)
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import Qt, QSize
+
+
+class Window(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setGeometry(200, 200, 700, 700)
+        self.ui_fn()
+        self.show()
+
+    def ui_fn(self):
+        label1 = QLabel('Column |')
+        label1.setAlignment(Qt.AlignCenter)
+        label1.setMaximumSize(200, 50)
+        label1.setStyleSheet("border:1px solid red;background-color:white;")
+        label2 = QLabel('Column ||')
+        label2.setAlignment(Qt.AlignCenter)
+        label2.setMaximumSize(200, 50)
+        label2.setStyleSheet("border:1px solid red;background-color:white;")
+        label3 = QLabel('Column |||')
+        label3.setAlignment(Qt.AlignCenter)
+        label3.setMaximumSize(200, 50)
+        label3.setStyleSheet("border:1px solid red;background-color:white;")
+
+
+        line = QLineEdit()
+        line.setPlaceholderText("Default Value")
+        line.setReadOnly(True)
+        btn = QPushButton()
+        btn.setText("Push")
+        btn.setShortcut(QKeySequence("Ctrl+p"))
+        combobox1 = QComboBox()
+        combobox1.addItems(["alper", "hasan"])
+        spin1 = QSpinBox()
+        spin1.setMinimum(-10)
+        spin1.setMaximum(10)
+        spin1.setValue(0)
+        date1 = QDateTimeEdit(datetime(2020, 6, 22))
+        date1.setDisplayFormat("dd-MM-yyyy")
+
+        lyout1 = QHBoxLayout()
+        lyout2 = QVBoxLayout()
+        lyout3 = QVBoxLayout()
+        lyout4 = QVBoxLayout()
+
+        self.setLayout(lyout1)
+        lyout1.addLayout(lyout2, 50)
+        lyout1.addLayout(lyout3, 25)
+        lyout1.addLayout(lyout4, 25)
+
+
+
+        lyout2.addWidget(line)
+        lyout2.addWidget(btn)
+
+        lyout2.addWidget(combobox1)
+        lyout2.addWidget(spin1)
+        lyout2.addWidget(date1)
+
+
+
+app = QApplication(sys.argv)
+window = Window()
+sys.exit(app.exec())
