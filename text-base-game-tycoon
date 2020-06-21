@@ -1,0 +1,80 @@
+DIVIDER = "-" * 20
+
+
+class StoreCls:
+    money = 25.00
+    day = 1
+    store_lst = []
+
+    def __init__(self, stor_name, store_profit, store_cost):
+        self.store_name = stor_name
+        self.store_profit = store_profit
+        self.store_cost = store_cost
+        self.store_count = 0
+
+    def display_store_info_fn(self, idx):
+        store_cost_str = "${:.2f}".format(self.store_cost)
+        print(str(idx) + ") " + self.store_name.ljust(25) + store_cost_str.ljust(20) + str(self.store_count))
+
+    @staticmethod
+    def welcome_game_fn():
+        print("Welcome to Tycoon".center(50))
+
+    @classmethod
+    def display_game_info_fn(cls):
+        print(DIVIDER.center(50))
+        print("Day:" + "{}".format(cls.day).rjust(10))
+        print("Money:" + "${:.2f}".format(cls.money).rjust(10))
+        print(DIVIDER.center(50))
+        print("".ljust(3) + "Store List".ljust(23) + "Store Cost".ljust(17) + "Store Count")
+
+        for idx, current_store in enumerate(cls.store_lst, 1):
+            current_store.display_store_info_fn(idx)
+
+    @classmethod
+    def buy_store_fn(cls):
+        which_store = input("Which Store do you wish to buy?")
+        current_store =cls.store_lst[int(which_store) - 1]
+        if current_store.store_cost <= cls.money:
+            current_store.store_count += 1
+            cls.money -= current_store.store_cost
+        else:
+            print("You don't have enough money")
+
+    @classmethod
+    def weekly_fn(cls):
+        for i in range(7):
+            cls.next_day_fn()
+
+    @classmethod
+    def next_day_fn(cls):
+        cls.day += 1
+        for current_store in cls.store_lst:
+            daily_profit = current_store.store_profit * current_store.store_count
+            cls.money += daily_profit
+
+
+# Start Game
+StoreCls.store_lst.append(StoreCls("Lemonade Stand", 1.5, 3.5))
+StoreCls.store_lst.append(StoreCls("Ice Cream Store", 10, 90))
+StoreCls.store_lst.append(StoreCls("Record Store", 5, 15))
+
+StoreCls.welcome_game_fn()
+
+running = True
+while running:
+
+    StoreCls.display_game_info_fn()
+
+    print("\nAvailable option : N)ext Day, B)uy Store, W)eekly Next, Q)uit")
+    game_option = input("Enter your option:").lower()
+    if game_option == "n":
+        StoreCls.next_day_fn()
+    elif game_option == "b":
+        StoreCls.buy_store_fn()
+    elif game_option == "q":
+        running = False
+    elif game_option == "w":
+        StoreCls.weekly_fn()
+    else:
+        print("Bad input!")
