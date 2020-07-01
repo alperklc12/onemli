@@ -1,3 +1,10 @@
 // dosyanın olduğu klasöre git.
 g++ file_name.cpp -o file_name.exe
 file_name.exe // dosya adı neyse onu yaz
+
+/*
+have MinGW compiler bin directory added to path.
+use mingw32-g++ -s -c source_file_name.cpp -o output_file_name.o to compile
+then mingw32-g++ -o executable_file_name.exe output_file_name.o to build exe
+finally, you run with executable_file_name.exe
+*/
