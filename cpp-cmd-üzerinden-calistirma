@@ -8,3 +8,9 @@ use mingw32-g++ -s -c source_file_name.cpp -o output_file_name.o to compile
 then mingw32-g++ -o executable_file_name.exe output_file_name.o to build exe
 finally, you run with executable_file_name.exe
 */
+
+Download MinGW form : https://sourceforge.net/projects/mingw-w64/
+use notepad++ to write the C++ source code.
+using command line change the directory/folder where the source code is saved(using notepad++)
+compile: g++ file_name.cpp -o file_name.exe
+run the executable: file_name.exe
