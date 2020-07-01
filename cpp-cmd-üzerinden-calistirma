@@ -1,0 +1,3 @@
+// dosyanın olduğu klasöre git.
+g++ file_name.cpp -o file_name.exe
+file_name.exe // dosya adı neyse onu yaz
