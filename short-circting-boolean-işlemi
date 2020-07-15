@@ -1,0 +1,9 @@
+def func1(*args):
+    count = len(args)
+    total = sum(args)
+    return 0 if  count == 0 else total / count
+
+def func2(*args):
+    count = len(args)
+    total = sum(args)
+    return count and total / count
