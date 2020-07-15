@@ -9,4 +9,8 @@ def calc_hi_lo_avg(*args, log_to_consol=False):
     # lo = min(args) if len(args) > 0 else 0  kısaltılmış if yapısı
     
     avg = (hi + lo) / 2
+    
+    if log_to_consol:
+        print("high={}, low={}, avg={}".format(hi, lo, avg)
+        
     return avg
