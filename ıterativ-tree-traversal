@@ -1,0 +1,92 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.visited = False
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        return f"<{self.data}>"
+
+
+class BST:
+    def __init__(self):
+        self.root = None
+        self.size = 0
+
+    def insert(self, data):
+        if self.root is None:
+            self.root = Node(data)
+        else:
+            self._insert_helper(data, self.root)
+
+    def _insert_helper(self, data, current):
+        newnode = Node(data)
+        if data < current.data:
+            if current.left is None:
+                current.left = newnode
+            else:
+                self._insert_helper(data, current.left)
+        else:
+            if current.right is None:
+                current.right = newnode
+            else:
+                self._insert_helper(data, current.right)
+
+    def traverse_preorder(self):
+        stack = [self.root]
+        while stack:
+            curr = stack.pop()
+            print(curr)
+            if curr.right:
+                stack.append(curr.right)
+            if curr.left:
+                stack.append(curr.left)
+
+    def traverse_inorder(self):
+        stack = []
+        curr = self.root
+        while True:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            if not stack:
+                break
+            curr = stack.pop()
+            print(curr)
+            curr = curr.right
+
+    def traverse_(self):
+        stack = []
+        curr = self.root
+        while curr or stack:
+            if curr:
+                print(curr)
+                stack.append(curr)
+                curr = curr.left
+            else:
+                curr = stack.pop()
+                curr = curr.right
+
+    def traverse_2(self):
+        stack = []
+        curr = self.root
+        while curr or stack:
+            while curr:
+                print(curr)
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            curr = curr.right
+
+
+bst = BST()
+bst.insert(8)
+bst.insert(4)
+bst.insert(10)
+bst.insert(1)
+bst.insert(17)
+
+bst.traverse_preorder()
+print()
+bst.traverse_2()
