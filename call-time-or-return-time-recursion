@@ -1,0 +1,9 @@
+def func1(n): # returning time recursion
+    if n>0:
+        func1(n-1)
+        print('%d' %n) # stack bosaldiktan sonra degerler doner
+
+def func2(n): # calling time recursion
+    if n>0:
+        print('%d' %n) # deger ve fonksiob beraber döner
+        func2(n-1)
