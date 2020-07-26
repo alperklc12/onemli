@@ -1,0 +1,106 @@
+class Vertex:
+    def __init__(self, data):
+        self.data = data
+        self.adjacency_lst = []
+        self.visited = False
+        self.predecessor = None
+
+    def __repr__(self):
+        return "<{}>".format(self.data)
+
+    def add_edge(self, other_node):
+        self.adjacency_lst.append(other_node)
+
+
+class Graph:
+    def __init__(self):
+        self.vertexies = {}
+
+    def add_vertexies(self, lst):
+        for e in lst:
+            self.vertexies[e.data] = e
+
+
+class BFS:
+    @staticmethod
+    def bfs_fn(node: Vertex):
+        queue = list()
+        queue.append(node)
+        node.visited = True
+        test = []
+
+        while queue:
+            current = queue.pop(0)
+            test.append(current)
+
+            for e in current.adjacency_lst:
+                if not e.visited:
+                    e.visited = True
+                    queue.append(e)
+        return test
+
+
+class DFS:
+    @staticmethod
+    def dfs_fn(node: Vertex):
+        queue = list()
+        queue.append(node)
+        node.visited = True
+        test = []
+
+        while queue:
+            current = queue.pop()
+            test.append(current)
+
+            for e in current.adjacency_lst:
+                if not e.visited:
+                    e.visited = True
+                    queue.append(e)
+        return test
+
+
+class DFS2:
+    @staticmethod
+    def dfs_fn(node: Vertex):
+        node.visited = True
+        print(node)
+        for e in node.adjacency_lst:
+            if not e.visited:
+                DFS2.dfs_fn(e)
+
+
+class DFS3:
+    @staticmethod
+    def dfs_fn(node: Vertex):
+        lst = []
+        DFS3._dfs_fhelper(node, lst)
+        return lst
+
+    @staticmethod
+    def _dfs_fhelper(node: Vertex, lst):
+        lst.append(node)
+        for e in node.adjacency_lst:
+            if not e.visited:
+                e.visited = True
+                DFS3._dfs_fhelper(e, lst)
+
+
+
+
+vtx1 = Vertex("a")
+vtx2 = Vertex("b")
+vtx3 = Vertex("c")
+vtx4 = Vertex("d")
+vtx5 = Vertex("e")
+vtx6 = Vertex("f")
+
+vtx1.add_edge(vtx3)
+vtx1.add_edge(vtx2)
+vtx3.add_edge(vtx4)
+vtx4.add_edge(vtx2)
+vtx2.add_edge(vtx5)
+vtx5.add_edge(vtx6)
+
+# DFS2.dfs_fn(vtx1)
+rusalt = DFS3.dfs_fn(vtx1)
+print(rusalt)
