@@ -1,0 +1,11 @@
+import sys
+
+class Myclass:
+	def __init__(self, name):
+		self.name = name
+
+name_ = sys.argv[1]
+std = Myclass(name_)
+
+print(sys.argv)
+print(std.name)
