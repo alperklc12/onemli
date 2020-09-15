@@ -1,0 +1,11 @@
+from pathlib import Path
+import os
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR2 = os.path.split(os.path.abspath(__file__))[0]
+MEDIA_URL = "blog\\images"
+
+print(BASE_DIR)
+print(BASE_DIR2)
+print(os.path.join(BASE_DIR2, MEDIA_URL))
