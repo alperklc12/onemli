@@ -1,0 +1,30 @@
+stack = []
+
+
+def calculate_itr(n):
+    while n > 0:
+        print(n ** 2)
+        n -= 1
+
+
+def calculate_itr_stck(n, stck):
+    while n > 0:
+        stck.append(n ** 2)
+        n -= 1
+    while stck:
+        print(stck.pop())
+
+
+def calculate_rec(n):
+    if n <= 0:
+        return
+    else:
+        calculate_rec(n - 1)
+        print(n ** 2)
+
+
+calculate_itr(5)
+print()
+calculate_itr_stck(5, stack)
+print()
+calculate_rec(5)
