@@ -1,17 +1,24 @@
+lst = [4, 2, 7, 1, 6, -1]
+
+
+def swap(arr, i, j):
+    arr[i], arr[j] = arr[j], arr[i]
+
+
 def buble_sort(arr):
     for _ in range(len(arr)):
         for i in range(len(arr) - 1):
-            if arr[i + 1] < arr[i]:
-                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+            if arr[i] > arr[i + 1]:
+                swap(arr, i, i + 1)
 
 
 def selection_sort(arr):
     for i in range(len(arr)):
-        pos = i
+        position = i
         for j in range(i + 1, len(arr)):
-            if arr[j] < arr[pos]:
-                pos = j
-        arr[i], arr[pos] = arr[pos], arr[i]
+            if arr[j] < arr[position]:
+                position = j
+        swap(arr, i, position)
 
 
 def insertion_sort(arr):
