@@ -1,0 +1,220 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def __repr__(self):
+        return "{}".format(self.data)
+
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert_itr(self, data):
+        newest = Node(data)
+
+        if self.root is None:
+            self.root = newest
+            return
+
+        curr = self.root
+        while curr:
+            if data < curr.data:
+                if curr.left:
+                    curr = curr.left
+                else:
+                    curr.left = newest
+                    return
+            else:
+                if curr.right:
+                    curr = curr.right
+                else:
+                    curr.right = newest
+                    return
+
+    def insert_rec(self, data):
+        if self.root is None:
+            self.root = Node(data)
+            return
+        self.insert_helper(self.root, data)
+
+    def insert_helper(self, node, data):
+        if node:
+            if data < node.data:
+                if node.left:
+                    self.insert_helper(node.left, data)
+                else:
+                    node.left = Node(data)
+            else:
+                if node.right:
+                    self.insert_helper(node.right, data)
+                else:
+                    node.right = Node(data)
+
+    def min_(self):
+        curr = self.root
+        while curr.left:
+            curr = curr.left
+        return curr
+
+    def max_(self):
+        curr = self.root
+        while curr.right:
+            curr = curr.right
+        return curr
+
+    def search_itr(self, key):
+        curr = self.root
+        while curr:
+            if key == curr.data:
+                return True
+            elif key < curr.data:
+                curr = curr.left
+            elif key > curr.data:
+                curr = curr.right
+        return False
+
+    def inorder_rec(self):
+        self.inorder_helper(self.root)
+
+    def inorder_helper(self, node):
+        if node:
+            self.inorder_helper(node.left)
+            print(node, end=" ")
+            self.inorder_helper(node.right)
+
+    def preorder_rec(self):
+        self.preorder_helper(self.root)
+
+    def preorder_helper(self, node):
+        if node:
+            print(node, end=" ")
+            self.preorder_helper(node.left)
+            self.preorder_helper(node.right)
+
+    def inorder_itr(self):
+        curr = self.root
+        stack = []
+
+        while curr or stack:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
+            else:
+                curr = stack.pop()
+                print(curr, end=" ")
+                curr = curr.right
+
+    def preorder_itr(self):
+        curr = self.root
+        stack = []
+
+        while curr or stack:
+            if curr:
+                print(curr, end=" ")
+                stack.append(curr)
+                curr = curr.left
+            else:
+                curr = stack.pop()
+                curr = curr.right
+
+    def postorder_itr(self):
+        curr = self.root
+        stack = []
+        dummy = []
+        stack.append(curr)
+
+        while stack:
+            dummy.append(curr)
+            if curr.left:
+                stack.append(curr.left)
+            if curr.right:
+                stack.append(curr.right)
+            curr = stack.pop()
+
+        while dummy:
+            temp = dummy.pop()
+            print(temp, end=" ")
+
+    def levelorder_itr(self):
+        queue = [self.root]
+
+        while queue:
+            curr = queue.pop(0)
+            print(curr, end=" ")
+            if curr.left:
+                queue.append(curr.left)
+            if curr.right:
+                queue.append(curr.right)
+
+    def delete_node(self, key):
+        parent = None
+        curr = self.root
+
+        if key == curr.data:
+            return
+
+        while curr and key != curr.data:
+            if key < curr.data:
+                if curr.left:
+                    parent = curr
+                    curr = curr.left
+            else:
+                if curr.right:
+                    parent = curr
+                    curr = curr.right
+
+        p = None
+        t = curr
+        if curr.left and curr.right:
+            while t.right:
+                p = t
+                t = t.right
+            p.right = None
+
+            curr.data = t.data
+            return
+
+        if curr.left:
+            while t.left:
+                p = t
+                t = t.left
+            curr.data = t.data
+            p.left = None
+            return
+
+        if curr.right:
+            while t.right:
+                p = t
+                t = t.right
+            curr.data = t.data
+            p.right = None
+            return
+
+        if parent.left:
+            if parent.left.data == key:
+                parent.left = None
+            else:
+                parent.right = None
+        elif parent.right:
+            if parent.right.data == key:
+                parent.right = None
+            else:
+                parent.left = None
+
+
+tree = BST()
+tree.insert_rec(12)
+tree.insert_rec(10)
+tree.insert_rec(17)
+tree.insert_rec(8)
+tree.insert_rec(9)
+tree.insert_rec(11)
+tree.insert_rec(5)
+tree.insert_rec(15)
+tree.insert_rec(21)
+tree.insert_rec(23)
+
+tree.preorder_rec()
