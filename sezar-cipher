@@ -1,0 +1,41 @@
+def generate_key(n):
+    letters = "ABCDEFGHIJKLMNOPQRTSUVWXYZ"
+    key_lc = {}
+    count = 0
+    for ch in letters:
+        key_lc[ch] = letters[(count + n) % 26]
+        count += 1
+    return key_lc
+
+
+def encrypt(key_lc, message_lc):
+    message_lc = message_lc.upper()
+    cipher_lc = ""
+    for ch in message_lc:
+        if ch in key_lc:
+            cipher_lc += key_lc[ch]
+        else:
+            cipher_lc += ch
+    return cipher_lc
+
+
+def get_decryption_key(key_lc):
+    dkey_lc = {}
+    for ch in key_lc:
+        dkey_lc[key_lc[ch]] = ch
+    return dkey_lc
+
+
+def attack_cipher(cipher_lc):
+    for i in range(26):
+        dkey = generate_key(i)
+        result = encrypt(dkey, cipher_lc)
+        print(result)
+
+
+message = "kel alper"
+key = generate_key(3)
+
+cipher = encrypt(key, message)
+
+attack_cipher(cipher)
