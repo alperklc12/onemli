@@ -1,0 +1,6 @@
+name1 = ""
+name2 = "kursat"
+
+my_name = name1 or name2
+
+print(my_name)
