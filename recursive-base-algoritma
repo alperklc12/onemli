@@ -1,0 +1,8 @@
+def my_recursive_fn(n):
+    if n == 0:
+        return n
+    else:
+        n -= 1
+        my_recursive_fn(n)
+        print(n)
+        return n
