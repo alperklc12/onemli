@@ -6,3 +6,13 @@ def my_recursive_fn(n):
         my_recursive_fn(n)
         print(n)
         return n
+        
+        
+ def open_dolls(n):
+    if n == 1:
+        print("All dolls opend")
+    else:
+        print(n)
+        open_dolls(n - 1)
+
+
