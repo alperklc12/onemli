@@ -1,0 +1,20 @@
+def power_recursive_fn(n):
+    if n == 0:
+        return 1
+    else:
+        power = power_recursive_fn(n - 1)
+        return power * 2
+
+
+def power_iterative_fn(n):
+    i = 0
+    power = 1
+    while i < n:
+        power = power * 2
+        i += 1
+    return power
+
+
+rusalt = power_recursive_fn(4)
+rusalt2 = power_iterative_fn(4)
+print(rusalt, rusalt2)
