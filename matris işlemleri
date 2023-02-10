@@ -1,0 +1,30 @@
+import pygame
+import random
+
+correct_matris = [[0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 0]]
+
+option_lst = []
+spaces_lst = []
+used_lst = []
+
+for i in range(8):
+    option_lst.append(i)
+
+for i in range(16):
+    piece = option_lst[random.randint(0, len(option_lst) - 1)]
+    spaces_lst.append(piece)
+    if piece in used_lst:
+        used_lst.remove(piece)
+        option_lst.remove(piece)
+    else:
+        used_lst.append(piece)
+
+for i in range(20):
+    colm = i // 5
+    row = i - (i // 5 * 5)
+    correct_matris[colm][row] = i
+
+print(correct_matris)
