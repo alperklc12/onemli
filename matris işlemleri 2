@@ -1,0 +1,24 @@
+def create_matris(row_lc, column_lc, num_lc):
+    tmp_lst = []
+    for i in range(column_lc):
+        tmp_lst.append([])
+        for j in range(row_lc):
+            tmp_lst[i].append(num_lc)
+    return tmp_lst
+
+
+def change_matris(idx_lc, row_lc, column_lc, matris):
+    tmp = -1
+    for i in range(column_lc):
+        for j in range(row_lc):
+            tmp += 1
+            if tmp == idx_lc:
+                matris[i][j] = 1
+                return
+
+
+def travel_matris(matris_lc, rows, cols):
+    for i in range(cols):
+        for j in range(rows):
+            if matris_lc[i][j] == 1:
+                print('blue', (i * rows + j))
