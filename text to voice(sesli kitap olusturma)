@@ -1,0 +1,6 @@
+from gtts import gTTS
+
+language = 'tr'
+text = 'Bundan sonra ne yazarsanız yazın hepsini okuyabilirim. Ama okumam için bana dosyaları dönüştürmelisiniz.'
+speech = gTTS(text=text, lang=language, slow=False)
+speech.save('text_speech1.mp3')
