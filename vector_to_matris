@@ -1,0 +1,21 @@
+import numpy as np
+import random
+
+def vector_to_matrix(row, colm, lst):
+    j, i, k, p = 0, 0, 0, 0
+    
+    mtrx = np.zeros([row, colm], dtype=int)
+    
+    for i in range(row):
+        k += j + 1
+        for j in range(colm):
+            if lst:
+                p = k + j
+                mtrx[i][j] = lst[p-1]
+    return mtrx
+
+a_lst = [random.randint(-10, 10) for _ in range(12)]
+b_lst = [random.randint(-10, 10) for _ in range(12)]
+
+A = vector_to_matrix(3, 4, a_lst)
+B = vector_to_matrix(3, 4, b_lst)
