@@ -5,4 +5,4 @@ x = sym.symbols('x')
 
 expr = 5*x - 2
 
-display(Math('\\text{The Solution to } %s \\text{ is x=} %s' %(sym.latex(expr), sym.latex(sym.solve(expr)[0]))))
+display(Math('\\text{The Solution to } %s \\text{ is x=} %s' %(sym.latex(sym.Eq(expr, 0)), sym.latex(sym.solve(expr)[0]))))
