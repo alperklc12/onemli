@@ -1,8 +1,0 @@
-import sympy as sym
-from IPython.display import display, Math
-
-x = sym.symbols('x')
-
-expr = 5*x - 2
-
-display(Math('\\text{The Solution to } %s \\text{ is x=} %s' %(sym.latex(expr), sym.latex(sym.solve(expr)[0]))))
