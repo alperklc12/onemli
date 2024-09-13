@@ -1,0 +1,108 @@
+import pygame
+from helper_m import text_draw_f
+
+
+class CheckBoxC:
+    def __init__(self, x_crd, y_crd, label, width=20, height=20):
+        self.rect = pygame.rect.Rect(x_crd, y_crd, width, height)
+        self.label = label
+        self.color = 'azure1'
+        self.text_color = 'azure3'
+        self.is_checked = False
+
+    def handle_event_f(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0]:
+                self.is_checked = not self.is_checked
+
+    def update_f(self):
+        self.color = 'light green' if self.is_checked else 'azure3'
+        self.text_color = 'black' if self.is_checked else 'azure4'
+
+    def draw_f(self, screen):
+        pygame.draw.rect(screen, self.color, self.rect, border_radius=5)
+        pygame.draw.rect(screen, 'black', self.rect, 1, border_radius=5)
+        text_draw_f(screen, self.label, self.rect.right + 5, self.rect.top + 3, color=self.text_color)
+
+
+class RadioButtonC:
+    def __init__(self, x_crd, y_crd, label, width=20, height=20):
+        self.rect = pygame.rect.Rect(x_crd, y_crd, width, height)
+        self.label = label
+        self.color = 'azure1'
+        self.text_color = 'azure3'
+        self.is_checked = False
+        self.selected_grp = None
+
+    def handle_event_f(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos) and pygame.mouse.get_pressed()[0]:
+                self.select_f()
+
+    def select_f(self):
+        if self.selected_grp:
+            for item in self.selected_grp:
+                item.deselect_f()
+            self.is_checked = True
+
+    def deselect_f(self):
+        self.is_checked = False
+
+    def set_grp_f(self, group):
+        self.selected_grp = group
+
+    def update_f(self):
+        self.color = 'light green' if self.is_checked else 'azure3'
+        self.text_color = 'black' if self.is_checked else 'azure4'
+
+    def draw_f(self, screen):
+        pygame.draw.circle(screen, self.color, (self.rect.centerx, self.rect.centery), 10)
+        pygame.draw.circle(screen, 'black', (self.rect.centerx, self.rect.centery), 10, width=1)
+        text_draw_f(screen, self.label, self.rect.right + 5, self.rect.top + 2, color=self.text_color)
+
+
+class DropDownBoxC:
+    def __init__(self, x_crd, y_crd, options, width=100, height=20):
+        self.rect = pygame.rect.Rect(x_crd, y_crd, width, height)
+        self.fnt = pygame.font.Font('fonts/calibril.ttf', 16)
+        self.options = options
+        self.selected = None
+        self.show_options = False
+        self.option_rects = []
+        self.label = 'Select One'
+
+    def handle_event_f(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos):
+                self.toggle_f()
+            else:
+                if self.show_options:
+                    self.show_options_f(event.pos)
+
+    def draw_f(self, screen):
+        pygame.draw.rect(screen, 'black', self.rect, 1)
+        label_text = self.fnt.render(self.label, True, 'black')
+        screen.blit(label_text, (self.rect.x + 5, self.rect.y + 2))
+
+        if self.show_options:
+            for i, option in enumerate(self.options):
+                option_rect = pygame.rect.Rect(self.rect.x, self.rect.y + 30 + i * 30, self.rect.w, 20)
+                self.option_rects.append(option_rect)
+                pygame.draw.rect(screen, 'azure4', option_rect, 1)
+                text_surface = self.fnt.render(option, True, 'azure4')
+                screen.blit(text_surface, (option_rect.x + 5, option_rect.y + 2))
+        else:
+            self.option_rects.clear()
+
+    def update_f(self):
+        self.label = self.selected if self.selected else 'Select One'
+
+    def toggle_f(self):
+        self.show_options = not self.show_options
+
+    def show_options_f(self, pos):
+        for i, option_rect in enumerate(self.option_rects):
+            if option_rect.collidepoint(pos):
+                self.selected = self.options[i]
+                self.show_options = False
+                break
